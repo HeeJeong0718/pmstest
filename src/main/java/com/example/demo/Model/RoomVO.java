@@ -19,5 +19,6 @@ public class RoomVO {
     int roomPrice;
     String resultPrice;
     int stock;
+    String result;
 
 }
