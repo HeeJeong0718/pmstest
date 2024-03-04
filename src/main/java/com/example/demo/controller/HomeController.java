@@ -21,13 +21,14 @@ public class HomeController {
     //1.검색하면 해당 데이터 나오게 우선 뿌려보자
     @GetMapping("/")
     public String main(HttpServletRequest request, @CookieValue(name="name", required=false)String name, Model model) {
-        System.out.println("name" + name);
+        return "index";
+      /*  System.out.println("name" + name);
         if(name != null){
             model.addAttribute("name",name);
             return "index";
         }else{
             return "redirect:/login";
-        }
+        }*/
     }
     //메인페이지
     @GetMapping("/main")
