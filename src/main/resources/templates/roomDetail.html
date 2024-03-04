@@ -1,0 +1,71 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="layout/default">
+
+<th:block layout:fragment="content">
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card mb-4">
+                <div class="card-header">Room Details</div>
+                <div class="card-body">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>ROOM_NO</th>
+                            <th>ROOM_CODE</th>
+                            <th>ROOM_STATUS</th>
+                            <th>ROOM_PRICE</th>
+                            <th>STANDARD_PRICE</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>ROOM_NO</th>
+                            <th>ROOM_CODE</th>
+                            <th>ROOM_STATUS</th>
+                            <th>ROOM_PRICE</th>
+                            <th>STANDARD_PRICE</th>
+                        </tr>
+                        </tfoot>
+                        <tbody id="tab">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!--   &lt;!&ndash; Bootstrap core JavaScript&ndash;&gt;
+    <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    &lt;!&ndash; Core plugin JavaScript&ndash;&gt;
+    <script src="/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    &lt;!&ndash; Custom scripts for all pages&ndash;&gt;
+    <script src="/bootstrap/js/sb-admin-2.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+</body>
+    <script>
+   $(function () {
+
+          network.connectApi('/api/roomDetail/detail?roomCode=[[${roomCode}]]',function(data){
+          let str = "";
+             for(let i = 0; i < data.data.length; i++){
+             str += "<tr>";
+             str += "<td>" + data.data[i].roomNo +  "</td>";
+             str += "<td>" + data.data[i].roomCode +  "</td>";
+             str += "<td>" + data.data[i].roomStatus +  "</td>";
+              str += "<td>" + data.data[i].roomPrice +  "</td>";
+             str += "<td>" + data.data[i].standardPrice +  "</td>";
+             str += "</tr>";
+             }
+             $("#tab").append(str);
+         });
+   });
+ </script>
+</th:block>
+
+</html>

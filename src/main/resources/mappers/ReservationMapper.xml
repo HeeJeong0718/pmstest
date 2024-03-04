@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ReservationMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+
+    <select id="reserveList"  resultType="com.example.demo.Model.ReservationVO">
+        SELECT
+          *
+        FROM reservation
+    </select>
+
+    <select id="showRoom"  resultType="com.example.demo.Model.RoomVO">
+
+        select * from room a
+        inner join room_detail b on a.room_code = b.room_code  where a.stock > 0
+    </select>
+
+    <select id="selectedRoom"  resultType="com.example.demo.Model.RoomVO">
+        select * from ROOM WHERE id = 1
+    </select>
+
+    <select id="reserveDetail"  resultType="com.example.demo.Model.ReservationVO">
+
+        select * from reservation where guest_name = #{guestName}
+    </select>
+
+    <select id="reservedRoom"  resultType="com.example.demo.Model.ReservationVO">
+        select * from reservation a
+        left join room_detail b on a.room_no = b.room_no
+        where a.guest_id = #{guestId}
+    </select>
+
+    <select id="reserveDetail2"  resultType="com.example.demo.Model.ReservationVO">
+
+        select * from reservation where guest_name = #{guestName}
+    </select>
+
+    <select id="checkRoomCnt"  resultType="int">
+        select count(*) from reservation where guest_name = #{guestName}
+    </select>
+
+    <insert id="reserve" parameterType="com.example.demo.Model.ReservationVO">
+    INSERT INTO reservation(
+    business_no,
+    booking_id,
+    room_type,
+    guest_id ,
+    guest_name ,
+    booking_date ,
+    check_in ,
+    check_out ,
+    phone,
+    status
+    )
+    VALUES( #{businessNo} ,#{bookingId},#{roomType},#{guestId},#{guestName},#{bookingDate},#{checkInDate},#{checkOutDate},#{phone},#{status})
+    </insert>
+
+    <insert id="reserve2" parameterType="com.example.demo.Model.ReservationVO">
+        INSERT INTO reservation(
+        business_no,
+        booking_id,
+        room_type,
+        guest_id ,
+        guest_name ,
+        booking_date ,
+        check_in ,
+        check_out ,
+        phone,
+        status
+        )
+        VALUES( #{businessNo} ,#{bookingId},#{roomType},#{guestId},#{guestName},#{bookingDate},#{checkInDate},#{checkOutDate},#{phone},#{status})
+    </insert>
+
+
+
+    <update id="checkin">
+        UPDATE RESERVATION
+        SET status = 'CHECKIN'
+        where guest_id = #{guestId}
+    </update>
+     <!--예약확정 -->
+    <update id="confirmReserve">
+        UPDATE RESERVATION
+        SET status = 'CONFIRM'
+        where guest_name = #{guestName}
+    </update>
+
+    <update id="cancel">
+        UPDATE RESERVATION
+        SET status = #{status}
+        where guest_id = #{guestId}
+    </update>
+
+</mapper>

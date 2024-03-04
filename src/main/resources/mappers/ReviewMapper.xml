@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ReviewMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+
+    <select id="list"  resultType="com.example.demo.Model.ReviewVO">
+        SELECT
+        business_no,
+        room_no,
+        guest_id,
+        guest_nm,
+        check_in,
+        check_out,
+        email,
+        title,
+        content
+        FROM REVIEW
+    </select>
+
+    <insert id="insertReview" parameterType="com.example.demo.Model.ReviewVO">
+        <![CDATA[
+        INSERT INTO REVIEW(
+          business_no,
+          room_no,
+          guest_id,
+          guest_nm,
+          check_in,
+          check_out,
+          email,
+          title,
+          content,
+          create_date,
+          modify_date
+         )
+        VALUES(#{businessNo}, #{roomNo}, #{guestId},#{guestNm},#{checkIn},#{checkOut},#{email},#{title},#{content} ,now(), now())
+        ]]>
+
+    </insert>
+
+
+    <select id="detail" resultType="com.example.demo.Model.ReviewVO">
+        select * from REVIEW where guest_id = #{guestId}
+    </select>
+
+    <select id="detail2" resultType="com.example.demo.Model.ReviewVO">
+        select * from REVIEW where guest_id = #{guestId}
+    </select>
+
+
+</mapper>

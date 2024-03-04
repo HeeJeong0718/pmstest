@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.HotelMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+    <insert id="insertHotel">
+
+        INSERT INTO hotel(
+        hotel_name
+        )
+        VALUES( #{hotelName} )
+    </insert>
+
+    <select id="list"  resultType="com.example.demo.Model.HotelVO">
+        SELECT
+        hotel_name,
+        business_no,
+        address,
+        num_rooms
+        FROM HOTEL
+    </select>
+
+    <select id="detail" resultType="com.example.demo.Model.HotelVO">
+        select * from hotel where hotelname = #{hotelName}
+    </select>
+
+    <update id="update">
+        UPDATE hotel
+        SET hotelname = #{hotelName}, business_no = #{businessNo} , num_rooms = #{numRooms}
+        where hotelname = #{hotelName}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM hotel
+        WHERE hotelname = #{hotelName}
+    </delete>
+
+    <update id="updatePoint">
+        UPDATE USERS
+        SET point = #{point}
+        where guest_id = #{gusetId}
+    </update>
+</mapper>

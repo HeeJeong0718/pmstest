@@ -1,0 +1,72 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<body class="bg-gradient-primary">
+<div class="container">
+
+    <div class="col-lg-5">
+        <!-- Basic login form-->
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header justify-content-center"><h3 class="fw-light my-4">Login</h3></div>
+            <div class="card-body">
+                <!-- Login form-->
+                <form>
+                    <!-- Form Group (email address)-->
+                    <div class="mb-3">
+                        <label class="small mb-1">username</label>
+                        <input class="form-control" id="username" type="text" placeholder="Enter email address">
+                    </div>
+                    <!-- Form Group (password)-->
+                    <!-- <div class="mb-3">
+                         <label class="small mb-1" for="inputPassword">Password</label>
+                         <input class="form-control" id="inputPassword" type="password" placeholder="Enter password">
+                     </div>-->
+                    <!-- Form Group (remember password checkbox)-->
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" id="rememberPasswordCheck" type="checkbox" value="">
+                            <label class="form-check-label" for="rememberPasswordCheck">Remember password</label>
+                        </div>
+                    </div>
+                    <!-- Form Group (login box)-->
+                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <a class="small" href="auth-password-basic.html">Forgot Password?</a>
+                        <a class="btn btn-primary" onclick="login();">Login</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <div class="small"><a href="auth-register-basic.html">Need an account? Sign up!</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+<!-- Custom fonts for this template-->
+<link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+<link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"/>
+
+<!-- Custom styles for this template-->
+<link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+</body>
+ <script>
+     function login(){
+        const obj  = {
+                username : $("#username").val()
+           }
+           alert("obj" + JSON.stringify(obj));
+           network.sendApi('/api/auth/login', obj, function(data){
+              if(data != null){
+              location.href = "/main";
+              }
+          });
+     }
+ </script>
+
+</th:block>
+</html>

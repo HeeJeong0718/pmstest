@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RoomDetailMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+
+    <select id="list"  resultType="com.example.demo.Model.RoomDetailVO">
+        select
+        a.id
+         ,a.business_no
+         ,a.room_type
+        ,b.room_no
+        ,b.room_code
+        ,b.room_status
+        ,b.room_price
+        ,b.standard_price
+        ,a.stock
+        from room a left join
+        room_detail b on a.room_code = b.room_code
+    </select>
+
+    <insert id="insertRoomDetail" parameterType="com.example.demo.Model.RoomDetailVO">
+        <![CDATA[
+        INSERT INTO room_detail(
+          room_no,
+          room_code,
+          room_status,
+          room_price,
+          standard_price
+         )
+        VALUES(#{roomNo}, #{roomCode}, #{roomStatus}, #{roomPrice} ,#{standardPrice})
+        ]]>
+
+    </insert>
+
+
+    <select id="detail" resultType="com.example.demo.Model.RoomDetailVO">
+        select * from room_detail where room_code = #{roomCode}
+    </select>
+
+    <update id="update">
+        UPDATE room_detail
+        SET room_status = #{roomStatus}
+        where room_no = #{roomNo}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM room_detail
+        WHERE room_no = #{roomNo}
+    </delete>
+</mapper>

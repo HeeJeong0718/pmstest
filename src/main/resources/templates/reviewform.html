@@ -1,0 +1,91 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default">
+
+<th:block layout:fragment="content">
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create review</h1>
+                            </div>
+                            <form class="user" id="reviewForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="businessNo" id="businessNo" value="testHotel"
+                                               placeholder="아이디">
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="guestId" id="guestId"
+                                            placeholder="아이디">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" name="guestName" id="guestName"
+                                            placeholder="이름">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="roomNo" id="roomNo"
+                                           placeholder="roomNo">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="checkIn"  id="checkIn"
+                                           placeholder="체크인">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="checkOut"  id="checkOut"
+                                           placeholder="체크아웃">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="phone" id="phone"
+                                           placeholder="폰">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="email" id="email"
+                                           placeholder="email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="title" id="title"
+                                           placeholder="title">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" name="content" id="content"
+                                           placeholder="content">
+                                </div>
+                            </form>
+                            <hr>
+                            <a href="#" onclick="review();" class="btn btn-primary btn-user btn-block">
+                                Register review
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+</body>
+ <script>
+     function review(){
+       const param = $("#reviewForm").serialize();
+             network.sendApi2('/api/review/insert', param, function(data){
+               alert("data!!!");
+               alert("data:" + data);
+               if(data.result == 'SUCCESS') {
+                   location.href = '/';
+               }
+          });
+     }
+ </script>
+
+</th:block>
+</html>

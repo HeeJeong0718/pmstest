@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ReplyMapper">
+
+
+    <insert id="insertReply">
+        <![CDATA[
+        INSERT INTO Reply( b_id, name, r_contents, date) VALUES( #{b_id}, #{name} , #{r_contents} , now())
+        ]]>
+    </insert>
+
+    <select id="list" resultType="com.example.demo.Model.ReplyVO">
+        select * from reply where b_id = #{b_id}
+    </select>
+
+    <select id="detailReply" resultType="com.example.demo.Model.ReplyVO">
+        select * from Reply where r_id = #{r_id}
+    </select>
+
+    <update id="update">
+        UPDATE Reply
+        SET name = #{name},
+        r_contents = #{r_contents}
+        where r_id = #{r_id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM Reply
+        WHERE r_id = #{r_id}
+    </delete>
+</mapper>

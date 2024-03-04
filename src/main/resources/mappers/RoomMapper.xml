@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RoomMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+    <insert id="insertRoom" parameterType="com.example.demo.Model.RoomVO">
+        <![CDATA[
+        INSERT INTO ROOM(
+          business_no,
+          room_type,
+          room_code,
+          stock
+         )
+        VALUES(#{businessNo}, #{roomType}, #{roomCode},#{stock})
+        ]]>
+
+    </insert>
+
+
+
+    <select id="list"  resultType="com.example.demo.Model.RoomVO">
+        SELECT
+        business_no,
+        room_type,
+        room_code,
+        stock
+        FROM ROOM
+    </select>
+
+    <select id="currentRoomCnt"  resultType="com.example.demo.Model.RoomVO">
+        select * from room WHERE ROOM_CODE = #{roomCode} and business_no = #{businessNo}
+    </select>
+
+    <select id="detail" resultType="com.example.demo.Model.RoomVO">
+        select * from ROOM where business_no = #{businessNo}
+    </select>
+
+    <update id="update">
+        UPDATE ROOM
+        SET business_no = #{businessNo}, room_type = #{roomType} , room_code = #{roomCode}
+        , stock = #{stock}
+        where business_no = #{businessNo}
+    </update>
+
+    <update id="updateRoomStock">
+        update room set stock = #{stock} where room_code = #{roomCode} and business_no = #{businessNo}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM ROOM
+        WHERE business_no = #{businessNo}
+    </delete>
+</mapper>

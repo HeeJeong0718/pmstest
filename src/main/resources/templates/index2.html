@@ -1,0 +1,57 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="fragments/layout">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<div id="set_member_template">222</div>
+<script id=member_template type="text/x-handlebars-template">
+    <header>
+        <div>
+            <h1>title</h1>
+        </div>
+    </header>
+    <!--리스트-->
+    <section id="content" class="member_list">
+        <div>
+            <p>여기에 리스트뿌린다</p>
+            <ul id="list" class="member_list"></ul>
+        </div>
+    </section>
+</script>
+<script id="member_contents_row" type="text/x-handlebars-template">
+    <h1>list</h1>
+    {{#if list}}
+        {{#each list}}
+            <ul>
+                <li><a href="/detail?id={{id}}">{{id}}</a></li>
+                <li>name:{{name}}</li>
+                <li>pwd:{{pwd}}</li>
+                <li>email:{{email}}</li>
+            </ul>
+        {{/each}}
+    {{/if}}
+</script>
+<!--<script type="text/javascript" th:src="@{/assets/js/network.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/network.js}"></script>
+<script type="text/javascript" th:src="@{/js/CustomUtil.js}"></script>
+<script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script>
+ $( document ).ready(function() {
+       memberInfo();
+    });
+
+    function memberInfo(){
+         let data2 = new Object();
+         let memberScript = new Object();
+          network.connectApiForJson2('/list',function(data){
+              memberScript.list =data.data;
+
+            let member_contents_row = Handlebars.compile($('#member_contents_row').html());
+
+            let member_template = Handlebars.compile($('#member_template').html());
+              $('#set_member_template').html(member_template(memberScript)).promise().done(function(){
+                    $('#list').append(member_contents_row(memberScript));
+           });
+         });
+       }
+
+</script>
+</html>

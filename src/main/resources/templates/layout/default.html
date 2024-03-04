@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="shortcut icon" href="#">
+
+<!-- 공통 헤더-->
+<th:block th:replace="fragments/head :: headFragment"></th:block>
+
+<body id="page-top">
+<div id="wrapper">
+    <!-- 사이드바-->
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <!-- 상단바-->
+            <th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
+            <!-- 본문-->
+            <th:block layout:fragment="content"></th:block>
+        </div>
+
+    </div>
+</div>
+
+<!-- 공통 스크립트-->
+<!--<th:block th:replace="fragments/script :: scriptFragment"></th:block>-->
+
+<!-- Custom fonts for this template-->
+<link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+<link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"/>
+
+<!-- Custom styles for this template-->
+<link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+
+</body>
+
+</html>

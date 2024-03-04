@@ -1,0 +1,103 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="layout/default">
+
+
+
+
+<th:block layout:fragment="content">
+            <div id="content">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <span class="badge bg-primary text-white me-2">Primary</span>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>ROOM_NO</th>
+                                            <th>HOTEL</th>
+                                            <th>BOOKING_ID</th>
+                                            <th>ROOM_TYPE</th>
+                                            <th>ROOM_CODE</th>
+                                            <th>GUEST_ID</th>
+                                            <th>GUEST_NAME</th>
+                                            <th>BOOKING_DATE</th>
+                                            <th>CHECK_IN_DATE</th>
+                                            <th>CHECK_OUT_DATE</th>
+                                            <th>PHONE</th>
+                                            <th>STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>ROOM_NO</th>
+                                            <th>HOTEL</th>
+                                            <th>BOOKING_ID</th>
+                                            <th>ROOM_TYPE</th>
+                                            <th>ROOM_CODE</th>
+                                            <th>GUEST_ID</th>
+                                            <th>GUEST_NAME</th>
+                                            <th>BOOKING_DATE</th>
+                                            <th>CHECK_IN_DATE</th>
+                                            <th>CHECK_OUT_DATE</th>
+                                            <th>PHONE</th>
+                                            <th>STATUS</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody id="tab">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+    <script>
+ <!--제이쿼리 3.0부터 사용가능 $(documet).ready() 대신 $()를 사용하자 -->
+   $(function () {
+        network.connectApi('/api/reserve/reserve_list',function(data){
+             let str = "";
+             for(let i = 0; i < data.data.length; i++){
+             str += "<tr>";
+             str += "<td><a href='/reserveDetail?guestName="+ data.data[i].guestName +"'>" + data.data[i].guestName + "</a></td>";
+             str += "<td>"+ data.data[i].roomNo + "</td>";
+             str += "<td>" + data.data[i].businessNo +  "</td>";
+             str += "<td>" + data.data[i].bookingId +  "</td>";
+             str += "<td>" + data.data[i].roomType +  "</td>";
+             str += "<td>" + data.data[i].roomCode+  "</td>";
+             str += "<td>" + data.data[i].guestId+  "</td>";
+             str += "<td>" + data.data[i].guestName+  "</td>";
+             str += "<td>" + data.data[i].bookingDate+  "</td>";
+             str += "<td>" + data.data[i].checkIn+  "</td>";
+             str += "<td>" + data.data[i].checkOut+  "</td>";
+             str += "<td>" + data.data[i].phone +"</td>";
+             if(data.data[i].status == 'BOOK'){
+              str += "<td><span class='badge bg-danger text-white me-2'>" + data.data[i].status + "</span></td>";
+             }else{
+               str += "<td><span class='badge bg-primary text-white me-2'>" + data.data[i].status + "</span></td>";
+             }
+             str += "</tr>";
+             }
+             $("#tab").append(str);
+         });
+   });
+
+  </script>
+</th:block>
+</html>

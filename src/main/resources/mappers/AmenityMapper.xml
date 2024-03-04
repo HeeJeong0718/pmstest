@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AmenityMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+
+    <select id="list"  resultType="com.example.demo.Model.AmenityVO">
+       SELECT * FROM amenity
+    </select>
+
+    <insert id="amenityInsert" parameterType="com.example.demo.Model.AmenityVO">
+        <![CDATA[
+        INSERT INTO AMENITY(
+          business_no,
+          item_name,
+          item_price,
+          stock,
+          use_yn
+         )
+        VALUES(#{businessNo} , #{itemName}, #{itemPrice}, #{stock},'Y')
+        ]]>
+    </insert>
+
+    <select id="amenityDetail" resultType="com.example.demo.Model.AmenityVO">
+        select * from amenity where item_name = #{itemName}
+    </select>
+
+    <update id="amenityUpdate">
+        UPDATE AMENITY
+        SET item_name = #{itemName},
+            item_price = #{itemPrice},
+            stock = #{stock},
+            use_yn = #{useYn}
+        where business_no = #{businessNo}
+    </update>
+
+    <update id="amenityDelete">
+        UPDATE AMENITY set use_yn = 'N'
+    </update>
+</mapper>

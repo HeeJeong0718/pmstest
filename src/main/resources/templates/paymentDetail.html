@@ -1,0 +1,73 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="layout/default">
+
+<th:block layout:fragment="content">
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="businessNo">bookingId (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="businessNo" type="text" placeholder="Enter your username" th:value="${paymentVO.businessNo}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="bookingId">bookingId (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="bookingId" type="text" placeholder="Enter your username" th:value="${paymentVO.bookingId}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="roomNo">roomNo (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="roomNo" type="text" placeholder="Enter your username" th:value="${paymentVO.roomNo}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="guestId">guestId (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="guestId" type="text" placeholder="Enter your username" th:value="${paymentVO.guestId}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="payStatus">payStatus (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="payStatus" type="text" placeholder="Enter your username" th:value="${paymentVO.payStatus}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="roomPrice">roomPrice(how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="roomPrice" type="text" placeholder="Enter your username" th:value="${paymentVO.roomPrice}">
+                        </div>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="button" onclick="doPay();">Pay</button>
+                        <button class="btn btn-warning" type="button" onclick="showBiling()">show Billing</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+</body>
+ <script>
+     function doPay(){
+         const obj  = {
+                businessNo : $("#businessNo").val(),
+                bookingId : $("#bookingId").val(),
+                guestId : $("#guestId").val(),
+
+           }
+            network.sendApi2('/api/payment/payHotelPrice', obj, function(data){
+               alert("data!!!");
+               alert("data:" + data);
+               if(data.result == 'SUCCESS') {
+                   location.href = "/";
+               }
+          });
+     }
+     function showBiling(){
+       const guestId = $("#guestId").val();
+       location.href = "/billing?guestId="+guestId;
+     }
+ </script>
+</th:block>
+
+</html>

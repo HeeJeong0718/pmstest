@@ -1,0 +1,136 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="layout/default">
+
+<th:block layout:fragment="content">
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="guestName">guestName (how your name will appear to other users on the site)</label>
+                            <input class="form-control" id="guestName" type="text" placeholder="Enter your username" th:value="${reservationVO.guestName}">
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="bookingId">bookingId</label>
+                                <input class="form-control" id="bookingId" type="text" placeholder="Enter your first name" th:value="${reservationVO.bookingId}">
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="guestId">guestId</label>
+                                <input class="form-control" id="guestId" type="text" placeholder="Enter your last name" th:value="${reservationVO.guestId}">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputOrgName">checkInDate</label>
+                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" th:value="${reservationVO.checkIn}">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLocation">checkOutDate</label>
+                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" th:value="${reservationVO.checkOut}">
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">bookingDate</label>
+                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" th:value="${reservationVO.bookingDate}">
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone</label>
+                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" th:value="${reservationVO.phone}">
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">status</label>
+                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" th:value="${reservationVO.status}">
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="button">Save</button>
+
+                        <button  th:if="${reservationVO.status.equals('CONFIRM')}" style="display:show" class="btn btn-danger" type="button" onclick="confirm_checkIn();">Confirm checkin</button>
+                        <button  th:if="${reservationVO.status.equals('BOOK')}" style="display:show" class="btn btn-danger" type="button" onclick="confirm_reserve();">Confirm Reservation</button>
+                        <button class="btn btn-warning" type="button" onclick="go_main();">go to main2</button>
+                    </form>
+                </div>
+                <hr>
+                <div class="card-header">Amenity</div>
+                <div class="card-body">
+                    <select th:field="*{amenity}" class="form-select">
+                        <option value="">==amenity선택==</option>
+                        <option th:each="amenity : ${amenity}" th:value="${amenity.itemName}"
+                                th:text="${amenity.itemName}">FAST</option>
+                    </select>
+                    <button  class="btn btn-danger" type="button" onclick="AddAmenity();">어매니티 추가하기</button>
+                    <div id="addAmenity">
+
+                    </div>
+              </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" th:src="@{/js/network.js}"></script>
+</body>
+ <script>
+     function confirm_reserve(){
+         const obj  = {
+                guestName : $("#guestName").val()
+           }
+            network.sendApi2('/api/reserve/confirm_reserve', obj, function(data){
+               alert("data!!!");
+               alert("data:" + data);
+               if(data.result == 'SUCCESS') {
+                   location.href = location.href;
+               }
+          });
+     }
+       function go_main(){
+        location.href = "/";
+     }
+
+      function AddAmenity(){
+
+              var drop_list = ` <select th:field="*{amenity}" class="form-select">`;
+                drop_list += ' <option value="">==amenity선택==</option>';
+                drop_list += `<option th:each="amenity : ${amenity}" th:value="${amenity.itemName}"
+                                th:text="${amenity.itemName}">FAST</option>`;
+                drop_list += '</select>';
+                addAmenity.append(drop_list);
+      }
+
+
+
+      function confirm_checkIn(){
+         const obj  = {
+                guestId : $("#guestId").val()
+           }
+            network.sendApi2('/api/reserve/checkin', obj, function(data){
+               alert("data!!!");
+               alert("data:" + data);
+               if(data.result == 'SUCCESS') {
+                   location.href = location.href;
+               }
+          });
+     }
+       function go_main(){
+        location.href = "/";
+     }
+ </script>
+</th:block>
+
+</html>

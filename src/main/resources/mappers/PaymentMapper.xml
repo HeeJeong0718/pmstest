@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PaymentMapper">
+
+<!--
+ insert into 테이블(db컬럼명) parameterType =hotelVO니까 hotelVO에 있는값을넣어주면됨
+-->
+
+    <select id="list"  resultType="com.example.demo.Model.PaymentVO">
+       SELECT * FROM PAYMENT
+    </select>
+
+    <insert id="processPay" parameterType="com.example.demo.Model.PaymentVO">
+        <![CDATA[
+        INSERT INTO PAYMENT(
+          booking_id,
+          business_no,
+          guest_id,
+          pay_status,
+          room_price
+         )
+        VALUES(#{bookingId}, #{businessNo}, #{guestId},#{payStatus}, #{roomPrice})
+        ]]>
+
+
+    </insert>
+
+    <select id="paymentDetail" resultType="com.example.demo.Model.PaymentVO">
+        select * from payment where booking_id = #{bookingId}
+    </select>
+
+    <update id="update">
+        UPDATE room_detail
+        SET room_status = #{roomStatus}
+        where room_no = #{roomNo}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM room_detail
+        WHERE room_no = #{roomNo}
+    </delete>
+</mapper>
