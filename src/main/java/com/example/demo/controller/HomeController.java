@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class HomeController {
     //1.검색하면 해당 데이터 나오게 우선 뿌려보자
     @GetMapping("/")
-    public String main(HttpServletRequest request, @CookieValue(name="name", required=false)String name, Model model) {
+    public String main() {
         return "index";
       /*  System.out.println("name" + name);
         if(name != null){
@@ -31,7 +31,7 @@ public class HomeController {
         }*/
     }
     //메인페이지
-    @GetMapping("/main")
+   /* @GetMapping("/main")
     public String index(@CookieValue(name="name", required=false)String name, Model model) {
         System.out.println("name" + name);
         if(name != null){
@@ -40,7 +40,7 @@ public class HomeController {
         }else{
             return "redirect:/login";
         }
-    }
+    }*/
 
     @GetMapping("/signup")
     public String signup(){
