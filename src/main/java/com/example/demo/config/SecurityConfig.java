@@ -54,7 +54,7 @@ public class SecurityConfig  {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests((authz) -> authz //new AntPathRequestMatcher 추가
-                         .requestMatchers(new AntPathRequestMatcher("/api/test/**")).hasRole("ADMIN")
+                         .requestMatchers(new AntPathRequestMatcher("/api/test2/**")).hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/**") ).permitAll()
                         .anyRequest()
                         .authenticated())

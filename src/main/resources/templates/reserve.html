@@ -1,101 +1,280 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/default">
-
 <th:block layout:fragment="content">
 <body class="bg-gradient-primary">
-
     <div class="container">
-
         <div class="row">
             <div id="roomList"></div>
-            <div class="col-lg-6 col-xl-3 mb-4">
-                <div class="card bg-primary text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="me-3">
-                                <div class="text-white-75 small">Earnings (Monthly)</div>
-                                <div class="text-lg fw-bold">$40,000</div>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar feather-xl text-white-50"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                        <a class="text-white stretched-link" href="#!">View Report</a>
-                        <div class="text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3 mb-4">
-                <div class="card bg-warning text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="me-3">
-                                <div class="text-white-75 small">Earnings (Annual)</div>
-                                <div class="text-lg fw-bold">$215,000</div>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign feather-xl text-white-50"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                        <a class="text-white stretched-link" href="#!">View Report</a>
-                        <div class="text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3 mb-4">
-                <div class="card bg-success text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="me-3">
-                                <div class="text-white-75 small">Task Completion</div>
-                                <div class="text-lg fw-bold">24</div>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square feather-xl text-white-50"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                        <a class="text-white stretched-link" href="#!">View Tasks</a>
-                        <div class="text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3 mb-4">
-                <div class="card bg-danger text-white h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="me-3">
-                                <div class="text-white-75 small">Pending Requests</div>
-                                <div class="text-lg fw-bold">17</div>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle feather-xl text-white-50"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                        <a class="text-white stretched-link" href="#!">View Requests</a>
-                        <div class="text-white"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M246.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 41.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
+        <div class="row">
+        <table class="scriptCalendar">
+            <thead>
+            <tr>
+                <td class="calendarBtn" id="btnPrevCalendar">&#60;&#60;</td>
+                <td colspan="5">
+                    <span id="calYear">YYYY</span>년
+                    <span id="calMonth">MM</span>월
+                </td>
+                <td class="calendarBtn" id="nextNextCalendar">&#62;&#62;</td>
+            </tr>
+            <tr>
+                <td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        </div>
+        <div id="test"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" th:src="@{/js/network.js}"></script>
+  <!--  <script type="text/javascript" th:src="@{/js/table.js}"></script>-->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
  <script>  //타임리프 foreahc사용
-    $(function () {
-        network.connectApi('/api/reserve/show_avaliable_room',function(data){
-             let str = "";
-             for(let i = 0; i < data.data.length; i++){
-             str += "<div class="col-lg-6 col-xl-3 mb-4">";
-             str += "<p>" + "test" + "</p>" ;
-             str += "</div>";
-             }
-             $("#roomList").append(str);
-         });
-   });
+ document.addEventListener("DOMContentLoaded", function() {
+     buildCalendar();
 
+     document.getElementById("btnPrevCalendar").addEventListener("click", function(event) {
+         prevCalendar();
+     });
+
+     document.getElementById("nextNextCalendar").addEventListener("click", function(event) {
+         nextCalendar();
+     });
+ });
+
+ var toDay = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 toDay에 Date 객체를 넣어줌
+
+ var nowDate = new Date();  // @param 전역 변수, 실제 오늘날짜 고정값
+
+ /**
+  * @brief   이전달 버튼 클릭시
+  */
+ function prevCalendar() {
+     this.toDay = new Date(toDay.getFullYear(), toDay.getMonth() - 1, toDay.getDate());
+     buildCalendar();    // @param 전월 캘린더 출력 요청
+ }
+
+ /**
+  * @brief   다음달 버튼 클릭시
+  */
+ function nextCalendar() {
+     this.toDay = new Date(toDay.getFullYear(), toDay.getMonth() + 1, toDay.getDate());
+     buildCalendar();    // @param 명월 캘린더 출력 요청
+ }
+
+ /**
+  * @brief   캘린더 오픈
+  * @details 날짜 값을 받아 캘린더 폼을 생성하고, 날짜값을 채워넣는다.
+  */
+ function buildCalendar() {
+     localStorage.setItem("test" , nowDate.getDate());
+     let doMonth = new Date(toDay.getFullYear(), toDay.getMonth(), 1);
+     let lastDate = new Date(toDay.getFullYear(), toDay.getMonth() + 1, 0);
+
+     let tbCalendar = document.querySelector(".scriptCalendar > tbody");
+
+     document.getElementById("calYear").innerText = toDay.getFullYear();                       // @param YYYY월
+     document.getElementById("calMonth").innerText = autoLeftPad((toDay.getMonth() + 1), 2);   // @param MM월
+
+
+     // @details 이전 캘린더의 출력결과가 남아있다면, 이전 캘린더를 삭제한다.
+     while(tbCalendar.rows.length > 0) {
+         tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+     }
+
+     // @param 첫번째 개행
+     let row = tbCalendar.insertRow();
+
+     // @param 날짜가 표기될 열의 증가값
+     let dom = 1;
+
+     // @details 시작일의 요일값( doMonth.getDay() ) + 해당월의 전체일( lastDate.getDate())을  더해준 값에서
+     //               7로 나눈값을 올림( Math.ceil() )하고 다시 시작일의 요일값( doMonth.getDay() )을 빼준다.
+     let daysLength = (Math.ceil((doMonth.getDay() + lastDate.getDate()) / 7) * 7) - doMonth.getDay();
+
+     // @param 달력 출력
+     // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
+     for(let day = 1 - doMonth.getDay(); daysLength >= day; day++) {
+
+         let column = row.insertCell();
+
+         // @param 평일( 전월일과 익월일의 데이터 제외 )
+         if(Math.sign(day) == 1 && lastDate.getDate() >= day) {
+
+             // @param 평일 날짜 데이터 삽입
+             column.innerText = autoLeftPad(day, 2);
+
+             // @param 일요일인 경우
+             if(dom % 7 == 1) {
+                 column.style.color = "#FF4D4D";
+             }
+
+             // @param 토요일인 경우
+             if(dom % 7 == 0) {
+                 column.style.color = "#4D4DFF";
+                 row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
+             }
+
+         }
+
+         // @param 평일 전월일과 익월일의 데이터 날짜변경
+         else {
+             let exceptDay = new Date(doMonth.getFullYear(), doMonth.getMonth(), day);
+             column.innerText = autoLeftPad(exceptDay.getDate(), 2);
+             column.style.color = "#A9A9A9";
+         }
+
+         // @brief   전월, 명월 음영처리
+         // @details 현재년과 선택 년도가 같은경우
+         if(toDay.getFullYear() == nowDate.getFullYear()) {
+
+             // @details 현재월과 선택월이 같은경우
+             if(toDay.getMonth() == nowDate.getMonth()) {
+
+                 // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
+                 if(nowDate.getDate() > day && Math.sign(day) == 1) {
+                     column.style.backgroundColor = "#E5E5E5";
+                 }
+
+                 // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
+                 else if(nowDate.getDate() < day && lastDate.getDate() >= day) {
+                     column.style.backgroundColor = "#FFFFFF";
+                     column.style.cursor = "pointer";
+                     column.val = day;
+                     column.onclick = function(){ calendarChoiceDay(this); }
+                 }
+
+                 // @details 현재일인 경우
+                 else if(nowDate.getDate() == day) {
+                     column.style.backgroundColor = "#FFFFE6";
+                     column.style.cursor = "pointer";
+                     column.val = day;
+                     column.onclick = function(){ calendarChoiceDay(this); }
+                 }
+
+                 // @details 현재월보다 이전인경우
+             } else if(toDay.getMonth() < nowDate.getMonth()) {
+                 if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                     column.style.backgroundColor = "#E5E5E5";
+                 }
+             }
+
+             // @details 현재월보다 이후인경우
+             else {
+                 if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                     column.style.backgroundColor = "#FFFFFF";
+                     column.style.cursor = "pointer";
+                     column.val = day;
+                     column.onclick = function(){ calendarChoiceDay(this); }
+                 }
+             }
+         }
+
+         // @details 선택한년도가 현재년도보다 작은경우
+         else if(toDay.getFullYear() < nowDate.getFullYear()) {
+             if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                 column.style.backgroundColor = "#E5E5E5";
+             }
+         }
+
+         // @details 선택한년도가 현재년도보다 큰경우
+         else {
+             if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                 column.style.backgroundColor = "#FFFFFF";
+                 column.style.cursor = "pointer";
+                 column.onclick = function(){ calendarChoiceDay(this); }
+             }
+         }
+         dom++;
+     }
+ }
+
+ /**
+  * @brief   날짜 선택
+  * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
+  */
+ function calendarChoiceDay(column) {
+     console.log("@@@" + column.val);
+
+     // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
+     if(document.getElementsByClassName("choiceDay")[0]) {
+
+         // @see 금일인 경우
+         if(document.getElementById("calMonth").innerText == autoLeftPad((nowDate.getMonth() + 1), 2) && document.getElementsByClassName("choiceDay")[0].innerText == autoLeftPad(toDay.getDate(), 2)) {
+             document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFE6";
+         }
+
+         // @see 금일이 아닌 경우
+         else {
+             document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+         }
+         document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
+     }
+
+     // @param 선택일 체크 표시
+     column.style.backgroundColor = "#FF9999";
+
+     // @param 선택일 클래스명 변경
+     column.classList.add("choiceDay");
+     callRoom(column);
+
+ }
+ function callRoom(column){
+      $("#test").empty();
+     if(localStorage.getItem != column){
+         alert("!!!!");
+         network.connectApi('/api/reserve/show_avaliable_room',function(data){
+             console.log(data.data);
+             //
+             let str = "";
+             for(let i = 0; i < data.data.length; i++) {
+                 str += "<div class=\"card-header\">Account Details</div>";
+                 str += "<div class=\"card-body\">";
+                 str += "<form>";
+                 str += "<div class=\"mb-3\">";
+                 str += "<label class=\"small mb-1\">hotelId</label>";
+                 str += "<p>" + data.data[i].businessNo + "</p>";
+                 str += "<p class=\"text-xs font-weight-bold text-danger text-uppercase mb-1\">남은수량: " + data.data[i].stock + "</p>";
+                 str += "<input class=\"form-control\" id=\"businessNo\" type=\"text\" value=" + data.data[i].roomCode + " readonly >";
+                 str += '<button class=\"btn btn-primary\" type=\"button\" id=\"reserve\" onclick="go(\'' + data.data[i].roomCode + '\')">예약하기</button>';
+
+                 str += "</form>";
+                 str += "</div>";
+                 str += "</div>";
+
+             }
+             $("#test").append(str);
+         });
+     }
+ }
+
+ function go(roomCode) {
+     alert("id:" + roomCode);
+     location.href="/reserve_form?roomCode="+roomCode;
+}
+ /**
+  * @brief   숫자 두자릿수( 00 ) 변경
+  * @details 자릿수가 한자리인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
+  * @param   num     앞에 0을 붙일 숫자 값
+  * @param   digit   글자의 자릿수를 지정 ( 2자릿수인 경우 00, 3자릿수인 경우 000 … )
+  */
+ function autoLeftPad(num, digit) {
+     if (String(num).length < digit) {
+         num = new Array(digit - String(num).length + 1).join("0") + num;
+     }
+     return num;
+ }
+
+ $(document).ready(function() {
+     //첫 번째 버튼 이벤트
+     $("#reserve").on("click", function() {
+         alert("!!!!");
+     });
+ });
  </script>
 
 </th:block>

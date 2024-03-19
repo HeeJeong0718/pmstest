@@ -104,6 +104,27 @@ public class ReservationServiceImpl implements ReservationService {
     public ResultDto reserve2(ReservationVO reservationVO) {
 
         int result =   reservationMapper.reserve(reservationVO);
+
+
+        if(result == 1){
+            //재고 차감
+            ReservationVO reservationDetail = reservationMapper.reserveDetail(reservationVO.getGuestName());
+            //재고 파악 후 예약상태 업데이트 해야함
+            //손님이 예약한 룸의 현재 재고 들고오기
+            int checkReserveRoomCnt = reservationMapper.checkRoomCnt(reservationVO.getGuestName());
+            System.out.println("checkReserveRoomCnt :"  + checkReserveRoomCnt);
+            RoomVO roomVO = roomMapper.currentRoomCnt(reservationDetail.getRoomCode() , reservationDetail.getBusinessNo());
+            int currentStock = roomVO.getStock();
+            System.out.println("currentStock :"  + currentStock);
+            int stock = currentStock - checkReserveRoomCnt;
+            //int stock = 0;
+            System.out.println("finalStock :"  + stock);
+
+            int success = roomMapper.updateRoomStock(stock, reservationDetail.getRoomCode(), reservationDetail.getBusinessNo());
+
+        }
+
+
         return ResultDto.builder()
                 .result(Common.SUCCESS)
                 .resultCode(Common.successCode)

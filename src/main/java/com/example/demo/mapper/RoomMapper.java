@@ -15,6 +15,8 @@ public interface RoomMapper {
     //호텔리스트
     ArrayList<RoomVO> list();
 
+    RoomVO selectRoom(String roomCode);
+
     //호텔생성
     RoomVO insertRoom(RoomVO roomVO);
 

@@ -23,15 +23,24 @@ public class RoomDetailController {
 
     final ReviewService reviewService;
 
-
     final RoomDetailService roomDetailService;
 
     final AmenityService amenityService;
+
+    final RoomService roomService;
 
 
     @GetMapping("/reserve") //호텔예약
     public String reserve(Model model) {
         return "reserve";
+    }
+
+    @GetMapping("/reserve_form") //호텔예약
+    public String reserve_form(Model model ,  @RequestParam String roomCode) {
+       RoomVO room  = roomService.selectRoom(roomCode);
+       model.addAttribute("room",room);
+        System.out.printf("roomL:"+ room);
+        return "reserve_form";
     }
 
     @GetMapping("/reserveDetail") //예약상세

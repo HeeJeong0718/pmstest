@@ -47,15 +47,17 @@
     business_no,
     booking_id,
     room_type,
+    room_code,
     guest_id ,
     guest_name ,
     booking_date ,
     check_in ,
     check_out ,
     phone,
-    status
+    amenity,
+   pay_price
     )
-    VALUES( #{businessNo} ,#{bookingId},#{roomType},#{guestId},#{guestName},#{bookingDate},#{checkInDate},#{checkOutDate},#{phone},#{status})
+    VALUES('testhotel2' ,#{bookingId},#{roomType},#{roomCode} , #{guestId},#{guestName},#{bookingDate},#{checkIn},#{checkOut},#{phone}, 'normal', 1000)
     </insert>
 
     <insert id="reserve2" parameterType="com.example.demo.Model.ReservationVO">
@@ -63,6 +65,7 @@
         business_no,
         booking_id,
         room_type,
+        room_code,
         guest_id ,
         guest_name ,
         booking_date ,
@@ -71,7 +74,7 @@
         phone,
         status
         )
-        VALUES( #{businessNo} ,#{bookingId},#{roomType},#{guestId},#{guestName},#{bookingDate},#{checkInDate},#{checkOutDate},#{phone},#{status})
+        VALUES( #{businessNo} ,#{bookingId},#{roomType},#{roomCode}, #{guestId},#{guestName},#{bookingDate},#{checkInDate},#{checkOutDate},#{phone},#{status})
     </insert>
 
 

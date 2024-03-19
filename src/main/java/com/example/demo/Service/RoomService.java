@@ -10,6 +10,8 @@ public interface RoomService {
 
      ResultDto insertRoom(RoomVO roomVO);
 
+     RoomVO selectRoom(String roomCode);
+
 
      ResultDto detail(int id);
 

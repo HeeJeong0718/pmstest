@@ -72,6 +72,7 @@
  <!--제이쿼리 3.0부터 사용가능 $(documet).ready() 대신 $()를 사용하자 -->
    $(function () {
         network.connectApi('/api/reserve/reserve_list',function(data){
+            alert("!!!");
              let str = "";
              for(let i = 0; i < data.data.length; i++){
              str += "<tr>";

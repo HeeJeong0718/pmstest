@@ -31,6 +31,14 @@ public class RoomServiceImpl implements RoomService {
                 .build();
 
     }
+    @Override
+    //hotel명
+    public RoomVO selectRoom(String roomCode) {
+
+        //룸 생성 후 생성된 갯수만큼 룸 detail에 인서트
+       return roomMapper.selectRoom(roomCode);
+
+    }
 
     @Override
     //hotel명
